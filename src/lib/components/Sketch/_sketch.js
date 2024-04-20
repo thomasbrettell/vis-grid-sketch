@@ -1,10 +1,11 @@
 import p5 from "p5";
 import Vis1 from "./Vis1";
 import Vis2 from "./Vis2";
+import Vis3 from "./Vis3";
 
 const COLORS = ["#eb3510", "#367cff", "#ffffff", "#62C370"];
 const SEED = Math.floor(Math.random() * 10000);
-const VIS_OPTIONS = [Vis1, Vis2];
+const VIS_OPTIONS = [Vis1, Vis2, Vis3];
 
 export const initSketch = (el) => {
   return new p5(sketch, el);
