@@ -1,4 +1,4 @@
-export default class Vis2 {
+export default class Vis4 {
   // what would be a better way for the class to acces p?
   constructor(
     _p,
@@ -32,10 +32,8 @@ export default class Vis2 {
     this.innerSize = this.size - this.margin * 2;
 
     this.t = this.p.int(this.p.random(2024));
-    this.tStep = this.p.random(0, 1);
-    this.c = this.p.int(this.p.random(4, 9));
-
-    this.rnd = this.p.random(190287);
+    this.tStep = this.p.random(0.2, 1.5);
+    this.mhk = this.p.random(0.2, 0.01);
   }
 
   run() {
@@ -47,8 +45,6 @@ export default class Vis2 {
     this.p.push();
     this.p.translate(this.x, this.y);
 
-    // rotate from center
-    // bit hacky, probs a better way
     this.p.translate(this.innerSize / 2, this.innerSize / 2);
     this.p.rotate(this.rotation);
     this.p.translate(-this.innerSize / 2, -this.innerSize / 2);
@@ -58,26 +54,10 @@ export default class Vis2 {
     this.p.strokeWeight(this.initialSize * 0.01);
     this.p.square(0, 0, this.innerSize);
 
-    const margin = this.innerSize * 0.02;
-    const innerSize = this.innerSize - margin;
-
-    for (let barI = 0; barI < this.c; barI++) {
-      const width = innerSize / this.c - margin;
-      const x = width * barI + margin * barI + margin;
-      const height = this.p.noise(barI, this.t / 70) * innerSize - margin;
-
-      this.color.setAlpha(this.p.noise(barI, this.rnd) * 255);
-
-      this.p.fill(this.color);
-      this.color.setAlpha(255);
-
-      this.p.rect(x, margin, width, height);
-    }
-
     this.p.pop();
   }
 
   update() {
-    this.t += this.tStep = this.p.random(0.1, 1);
+    this.t += this.tStep;
   }
 }

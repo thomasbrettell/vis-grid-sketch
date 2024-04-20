@@ -31,7 +31,7 @@ export default class Vis1 {
 
     this.t = this.p.int(this.p.random(2024));
     this.tStep = this.p.random(0, 1);
-    this.c = this.p.int(this.p.random(4, 8));
+    this.c = this.p.int(this.p.random(4, 9));
   }
 
   run() {

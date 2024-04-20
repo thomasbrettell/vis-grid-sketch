@@ -23,8 +23,6 @@ export default class Vis3 {
     this.scale = _scale;
     this.rotation = _rotation;
 
-    console.log(this.rotation);
-
     this.x = this.xi * this.size + this.xOffset + this.margin;
     this.y = this.yi * this.size + this.yOffset + this.margin;
 
@@ -36,7 +34,6 @@ export default class Vis3 {
     this.t = this.p.int(this.p.random(2024));
     this.tStep = this.p.random(0.2, 1.5);
     this.mhk = this.p.random(0.2, 0.01);
-    this.rad = this.innerSize * this.p.random(0.1, 0.45);
   }
 
   run() {
@@ -59,10 +56,7 @@ export default class Vis3 {
 
     this.p.beginShape();
     for (let x = 0; x < this.innerSize; x++) {
-      let y =
-        this.rad * 2 * this.p.noise(x * this.mhk * 0.1 + this.t * 0.02) -
-        this.rad +
-        this.innerSize / 2;
+      let y = this.innerSize * this.p.noise(x * this.mhk * 0.1 + this.t * 0.02);
 
       this.p.vertex(x, y);
     }
@@ -70,7 +64,6 @@ export default class Vis3 {
 
     this.color.setAlpha(255 * 0.35);
     this.p.stroke(this.color);
-    // this.p.line(this.innerSize / 2, 0, this.innerSize / 2, this.innerSize);
     this.p.line(0, this.innerSize / 2, this.innerSize, this.innerSize / 2);
     this.color.setAlpha(255);
 
